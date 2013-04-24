@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BattleFiled
+﻿namespace BattleField
 {
-    class Program
+    using System;
+
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.Write("Enter the size of the battle field: n = ");
             string en = Console.ReadLine();
             int n = int.Parse(en);
 
-
-            //tuka si pravq poleto
             string[,] battleField = new string[n, n];
 
             Random randomPosition = new Random();
 
-            //celta na tova e da se zapylni matricata default s cherti
             for (int row = 0; row < n; row++)
             {
                 for (int col = 0; col < n; col++)
                 {
-
                     battleField[row, col] = "-";
                 }
             }
@@ -52,34 +45,29 @@ namespace BattleFiled
                 {
                     numberOfMines--;
                 }
-
             }
 
             Console.WriteLine("Welcome to \"Battle Field\" game.");
-            //tuka pochvame
             Console.WriteLine();
-            printirai(battleField);
+            Printirai(battleField);
             Console.WriteLine();
             int moveCounter = 0;
-            //this is a cycle from ZERO to ONE-HUNDRED 
             for (int turns = 0; turns < 100; turns++)
             {
-
-                //here we read a string from the console
                 Console.Write("Please enter coordinates: ");
                 string line = Console.ReadLine();
-                string stringRow = "";
-                string stringCol = "";
+                string stringRow = string.Empty;
+                string stringCol = string.Empty;
                 int row;
                 int col;
                 bool flagForRow = true;
                 bool flagForCol = false;
-                int positionWhenIStopped = 0; ;
+                int positionWhenIStopped = 0;
 
                 for (int i = 0; i < 100; i++)
-
+                {
                     if (flagForRow)
-
+                    {
                         if (line[i] != ' ')
                         {
                             stringRow += line[i];
@@ -88,15 +76,13 @@ namespace BattleFiled
                             {
                                 positionWhenIStopped = i + 1;
 
-
-
                                 flagForRow = false;
                                 flagForCol = true;
                                 break;
                             }
                         }
-
-
+                    }
+                }
 
                 for (int i = positionWhenIStopped; i < 100; i++)
                 {
@@ -104,10 +90,8 @@ namespace BattleFiled
                     {
                         if (line[i] != ' ')
                         {
-
                             stringCol = stringCol + line[i];
                             break;
-
                         }
                     }
                 }
@@ -128,15 +112,15 @@ namespace BattleFiled
 
                     Console.WriteLine("Invalid move!");
                 }
-                //tuka proverqvam dali emina
+
+                // tuka proverqvam dali emina
                 if (battleField[row, col] == "1" || battleField[row, col] == "2" || battleField[row, col] == "3" || battleField[row, col] == "4" || battleField[row, col] == "5")
                 {
                     battleField = HodNaIgracha(row, col, n, battleField);
                     moveCounter++;
                 }
 
-
-                printirai(battleField);
+                Printirai(battleField);
 
                 int count = 0;
                 bool krai = false;
@@ -149,6 +133,7 @@ namespace BattleFiled
                         {
                             count++;
                         }
+
                         if (count == n * n)
                         {
                             krai = true;
@@ -158,7 +143,7 @@ namespace BattleFiled
 
                 if (krai)
                 {
-                    printirai(battleField);
+                    Printirai(battleField);
                     Console.WriteLine("Game over!");
                     PrintMoves(moveCounter);
                     break;
@@ -166,7 +151,7 @@ namespace BattleFiled
             }
         }
 
-        static string[,] HodNaIgracha(int row, int col, int n, string[,] battleField)
+        private static string[,] HodNaIgracha(int row, int col, int n, string[,] battleField)
         {
             if (Convert.ToInt16(battleField[row, col]) >= 1)
             {
@@ -174,14 +159,17 @@ namespace BattleFiled
                 {
                     battleField[row - 1, col - 1] = "X";
                 }
+
                 if (row - 1 >= 0 && col < n - 1)
                 {
                     battleField[row - 1, col + 1] = "X";
                 }
+
                 if (row < n - 1 && col - 1 > 0)
                 {
                     battleField[row + 1, col - 1] = "X";
                 }
+
                 if (row < n - 1 && col < n - 1)
                 {
                     battleField[row + 1, col + 1] = "X";
@@ -193,14 +181,17 @@ namespace BattleFiled
                     {
                         battleField[row - 1, col] = "X";
                     }
+
                     if (col - 1 >= 0)
                     {
                         battleField[row, col - 1] = "X";
                     }
+
                     if (col < n - 1)
                     {
                         battleField[row, col + 1] = "X";
                     }
+
                     if (row < n - 1)
                     {
                         battleField[row + 1, col] = "X";
@@ -212,14 +203,17 @@ namespace BattleFiled
                         {
                             battleField[row - 2, col] = "X";
                         }
+
                         if (col - 2 >= 0)
                         {
                             battleField[row, col - 2] = "X";
                         }
+
                         if (col < n - 2)
                         {
                             battleField[row, col + 2] = "X";
                         }
+
                         if (row < n - 2)
                         {
                             battleField[row + 2, col] = "X";
@@ -231,30 +225,37 @@ namespace BattleFiled
                             {
                                 battleField[row - 2, col - 1] = "X";
                             }
+
                             if (row - 2 >= 0 && col < n - 1)
                             {
                                 battleField[row - 2, col + 1] = "X";
                             }
+
                             if (row - 1 >= 0 && col - 2 >= 0)
                             {
                                 battleField[row - 1, col - 2] = "X";
                             }
+
                             if (row - 1 >= 0 && col < n - 2)
                             {
                                 battleField[row - 1, col + 2] = "X";
                             }
+
                             if (row < n - 1 && col - 2 >= 0)
                             {
                                 battleField[row + 1, col - 2] = "X";
                             }
+
                             if (row < n - 1 && col < n - 2)
                             {
                                 battleField[row + 1, col + 2] = "X";
                             }
+
                             if (row < n - 2 && col - 1 > 0)
                             {
                                 battleField[row + 2, col - 1] = "X";
                             }
+
                             if (row < n - 2 && col < n - 1)
                             {
                                 battleField[row + 2, col + 1] = "X";
@@ -266,14 +267,17 @@ namespace BattleFiled
                                 {
                                     battleField[row - 2, col - 2] = "X";
                                 }
+
                                 if (row - 2 >= 0 && col < n - 2)
                                 {
                                     battleField[row - 2, col + 2] = "X";
                                 }
+
                                 if (row < n - 2 && col - 2 > 0)
                                 {
                                     battleField[row + 2, col - 2] = "X";
                                 }
+
                                 if (row < n - 2 && col < n - 2)
                                 {
                                     battleField[row + 2, col + 2] = "X";
@@ -289,7 +293,7 @@ namespace BattleFiled
             return battleField;
         }
 
-        static void printirai(string[,] battleField)
+        private static void Printirai(string[,] battleField)
         {
             for (int i = 0; i < battleField.GetLength(0); i++)
             {
@@ -316,31 +320,34 @@ namespace BattleFiled
                     Console.Write("---");
                 }
             }
+
             Console.WriteLine();
 
             for (int i = 0; i < battleField.GetLength(0); i++)
             {
                 for (int j = -2; j < battleField.GetLength(1); j++)
-
+                {
                     if (j == -2)
+                    {
                         Console.Write("{0}", i);
-
+                    }
                     else if (j == -1)
+                    {
                         Console.Write("|");
-
+                    }
                     else
+                    {
                         Console.Write(" {0} ", battleField[i, j]);
+                    }
+                }
+
                 Console.WriteLine();
             }
         }
 
-        static void PrintMoves(int moves)
+        private static void PrintMoves(int moves)
         {
-
             Console.WriteLine("Detonated mines {0}", moves);
-
-
-
         }
     }
 }
