@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Collections.Generic;
 
-    public class FieldDetonator
+    public class Detonator
     {
         private const char Empty = '_';
         private const char Detonated = 'X';
@@ -66,7 +66,7 @@
 
         private readonly Field field = null;
 
-        public FieldDetonator(Field field)
+        public Detonator(Field field)
         {
             this.field = field;
         }
@@ -88,7 +88,7 @@
                 {
                     Coordinates areaPosition = currentPosition - topLeft;
 
-                    if (area[areaPosition.Row][areaPosition.Col] != FieldDetonator.Empty)
+                    if (area[areaPosition.Row][areaPosition.Col] != Detonator.Empty)
                     {
                         this.field.Destroy(currentPosition);
                     }

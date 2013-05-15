@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Text;
 
-    public class FieldRenderer
+    public class Renderer
     {
         private readonly Field field = null;
         private readonly StringBuilder renderer = new StringBuilder();
@@ -12,7 +12,7 @@
         private readonly string cellPadding = new string(' ', 1);
         private readonly int cellSize = 0;
 
-        public FieldRenderer(Field field)
+        public Renderer(Field field)
         {
             this.field = field;
 

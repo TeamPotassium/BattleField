@@ -6,8 +6,8 @@ namespace BattleField
     {
         private readonly Field field = null;
 
-        private readonly FieldDetonator detonator = null;
-        private readonly FieldRenderer renderer = null;
+        private readonly Detonator detonator = null;
+        private readonly Renderer renderer = null;
         private readonly UserInterface userInterface = null;
 
         public int NumberOfMoves { get; private set; }
@@ -18,8 +18,8 @@ namespace BattleField
         {
             this.field = field;
 
-            this.detonator = new FieldDetonator(field);
-            this.renderer = new FieldRenderer(field);
+            this.detonator = new Detonator(field);
+            this.renderer = new Renderer(field);
             this.userInterface = new UserInterface(field);
         }
 

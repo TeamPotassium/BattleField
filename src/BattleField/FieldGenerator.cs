@@ -35,15 +35,6 @@
             return numberOfMines;
         }
 
-        private string GenerateMine()
-        {
-            Array values = Enum.GetValues(typeof(Mine));
-            int randomIndex = random.Next(values.Length);
-
-            string mine = ((int)values.GetValue(randomIndex)).ToString();
-            return mine;
-        }
-
         private Coordinates GenerateMinePosition()
         {
             Coordinates position;
@@ -54,6 +45,15 @@
             } while (this.field[position] != Field.Empty);
 
             return position;
+        }
+
+        private string GenerateMine()
+        {
+            Array values = Enum.GetValues(typeof(Mine));
+            int randomIndex = random.Next(values.Length);
+
+            string mine = ((int)values.GetValue(randomIndex)).ToString();
+            return mine;
         }
     }
 }
