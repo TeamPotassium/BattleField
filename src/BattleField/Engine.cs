@@ -34,6 +34,7 @@
 
                 this.NumberOfMoves++;
             }
+            renderer.Render();
 
             OnGameOver(this, this.NumberOfMoves);
         }

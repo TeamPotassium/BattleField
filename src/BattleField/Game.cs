@@ -17,7 +17,7 @@
             Console.WriteLine("Welcome to \"Battle Field\" game.");
 
             field = new Field(size, size);
-            var generator = new FieldGenerator(field);
+            var generator = new FieldGenerator(field, new Random(0));
             generator.Generate();
 
             Engine engine = new Engine(field);

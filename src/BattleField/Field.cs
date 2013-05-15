@@ -11,6 +11,11 @@
 
         private readonly string[,] field = null;
 
+        public string[,] Value
+        {
+            get { return this.field; }
+        }
+
         private int rows = 0;
         public int Rows
         {

@@ -2,18 +2,19 @@
 {
     using System;
 
-    class FieldGenerator
+    public class FieldGenerator
     {
         private const int MinMinePercentage = 15;
         private const int MaxMinePercentage = 30;
 
-        private static readonly Random random = new Random();
+        private readonly Random random = null;
 
         private readonly Field field = null;
 
-        public FieldGenerator(Field field)
+        public FieldGenerator(Field field, Random random)
         {
             this.field = field;
+            this.random = random;
         }
 
         public void Generate()
