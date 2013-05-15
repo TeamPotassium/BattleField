@@ -22,10 +22,10 @@
 
             Engine engine = new Engine(field);
 
-            engine.Run();
-
             engine.OnGameOver += (obj, numberOfMoves) =>
                 Console.WriteLine("You finished in {0} moves.", numberOfMoves);
+
+            engine.Run();
         }
     }
 }

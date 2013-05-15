@@ -2,7 +2,7 @@
 
 namespace BattleField
 {
-    class UserInterface
+    public class UserInterface
     {
         private readonly Field field = null;
 
@@ -24,7 +24,7 @@ namespace BattleField
                     Console.WriteLine("Wrong format.");
                 }
 
-                else if (!(0 < size && size < Field.MaxSize))
+                else if (!(0 < size && size <= Field.MaxSize))
                 {
                     Console.WriteLine("Size must be between {0} and {1}", 0, Field.MaxSize);
                 }
@@ -51,8 +51,10 @@ namespace BattleField
                     Console.WriteLine("Wrong format.");
                 }
 
-                else if (!(0 < input.Row && input.Row < this.field.Rows &&
-                    0 < input.Col && input.Col < this.field.Cols))
+                else if (!(
+                    0 <= input.Row && input.Row < this.field.Rows &&
+                    0 <= input.Col && input.Col < this.field.Cols
+                ))
                 {
                     Console.WriteLine("Wrong coordinates.");
                 }

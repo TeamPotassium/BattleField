@@ -129,7 +129,7 @@
         {
             string actual = new Coordinates(123, 456).ToString();
 
-            string expected = "Coordinates(123 456)";
+            string expected = "123 456";
 
             Assert.AreEqual(expected, actual);
         }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace BattleField
+﻿namespace BattleField
 {
+    using System;
+
     public class Engine
     {
         private readonly Field field = null;

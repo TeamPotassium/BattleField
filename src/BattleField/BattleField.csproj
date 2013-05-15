@@ -46,7 +46,6 @@
     <Compile Include="Detonator.cs" />
     <Compile Include="FieldGenerator.cs" />
     <Compile Include="Mine.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
