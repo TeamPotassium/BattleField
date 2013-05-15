@@ -4,10 +4,10 @@
     using System.Linq;
     using System.Collections.Generic;
 
-    public class Detonator
+    public class FieldDetonator
     {
         private const char Empty = '_';
-        private const char Full = 'X';
+        private const char Detonated = 'X';
 
         private static readonly Dictionary<Mine, string[]> detonationAreaOfMine = new Dictionary<Mine, string[]>()
         {
@@ -66,13 +66,14 @@
 
         private readonly Field field = null;
 
-        public Detonator(Field field)
+        public FieldDetonator(Field field)
         {
             this.field = field;
         }
 
-        public void DetonateMine(Mine mine, Coordinates position)
+        public void DetonateMine(Coordinates position)
         {
+            Mine mine = this.field.GetMine(position);
             string[] area = detonationAreaOfMine[mine];
 
             Coordinates center = new Coordinates(area.GetLength(0) / 2, area[0].Length / 2);
@@ -87,7 +88,7 @@
                 {
                     Coordinates areaPosition = currentPosition - topLeft;
 
-                    if (area[areaPosition.Row][areaPosition.Col] != Detonator.Empty)
+                    if (area[areaPosition.Row][areaPosition.Col] != FieldDetonator.Empty)
                     {
                         this.field.Destroy(currentPosition);
                     }

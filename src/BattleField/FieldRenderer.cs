@@ -1,46 +1,100 @@
 ﻿namespace BattleField
 {
     using System;
+    using System.Linq;
+    using System.Text;
 
-    public static class FieldRenderer
+    public class FieldRenderer
     {
-        public static void Render(Field field)
+        private readonly Field field = null;
+        private readonly StringBuilder renderer = new StringBuilder();
+
+        private readonly string cellPadding = new string(' ', 1);
+        private readonly int cellSize = 0;
+
+        public FieldRenderer(Field field)
         {
-            RenderHeader(field);
-            RenderField(field);
+            this.field = field;
+
+            this.cellSize = Field.MaxSize.ToString().Length + 2 * this.cellPadding.Length;
         }
 
-        private static void RenderHeader(Field battleField)
+        public void Render()
         {
-            Console.Write("   ");
-            for (int row = 0; row < battleField.Rows; row++)
-            {
-                Console.Write("{0, 3}", row);
-            }
+            RenderHeader();
+            RenderSeparatorRow();
 
-            Console.WriteLine();
+            RenderField();
+            RenderSeparatorRow();
 
-            Console.Write("   ");
-            for (int row = 0; row < battleField.Rows; row++)
-            {
-                Console.Write("---");
-            }
-
-            Console.WriteLine();
+            string result = FlushBuffer();
+            Console.WriteLine(result);
         }
 
-        private static void RenderField(Field battleField)
+        private void RenderHeader()
         {
-            for (int row = 0; row < battleField.Rows; row++)
+            this.renderer.Append(new string(' ', this.cellSize));
+            this.renderer.Append("|");
+
+            for (int row = 0; row < this.field.Rows; row++)
             {
-                Console.Write("{0, 2}| ", row);
-                for (int col = 0; col < battleField.Cols; col++)
+                this.renderer.Append(cellPadding);
+                this.renderer.Append(row);
+                this.renderer.Append(cellPadding);
+            }
+
+            this.renderer.Append("|");
+
+            this.renderer.AppendLine();
+        }
+
+        private void RenderSeparatorRow()
+        {
+            string cell = new string('-', this.cellSize);
+
+            this.renderer.Append(cell);
+
+            this.renderer.Append("┼");
+
+            for (int col = 0; col < this.field.Cols; col++)
+            {
+                this.renderer.Append(cell);
+            }
+
+            this.renderer.Append("┤");
+
+            this.renderer.AppendLine();
+        }
+
+        private void RenderField()
+        {
+            for (int row = 0; row < this.field.Rows; row++)
+            {
+                this.renderer.Append(cellPadding);
+                this.renderer.Append(row);
+                this.renderer.Append(cellPadding);
+
+                this.renderer.Append("|");
+
+                for (int col = 0; col < this.field.Cols; col++)
                 {
-                    Console.Write(" {0} ", battleField[row, col]);
+                    this.renderer.Append(cellPadding);
+                    this.renderer.Append(this.field[row, col]);
+                    this.renderer.Append(cellPadding);
                 }
 
-                Console.WriteLine();
+                this.renderer.Append("|");
+
+                this.renderer.AppendLine();
             }
+        }
+
+        private string FlushBuffer()
+        {
+            string result = this.renderer.ToString();
+            this.renderer.Clear();
+
+            return result;
         }
     }
 }

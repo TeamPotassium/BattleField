@@ -1,6 +1,8 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleField", "BattleField\BattleField.csproj", "{8C7C7574-8DD7-4E77-A932-90516A81D894}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleField.Tests", "BattleField.Tests\BattleField.Tests.csproj", "{8C99A8A3-6671-4C9B-8A19-86D1AF7876D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,6 +14,10 @@ Global
 		{8C7C7574-8DD7-4E77-A932-90516A81D894}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C7C7574-8DD7-4E77-A932-90516A81D894}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C7C7574-8DD7-4E77-A932-90516A81D894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C99A8A3-6671-4C9B-8A19-86D1AF7876D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C99A8A3-6671-4C9B-8A19-86D1AF7876D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C99A8A3-6671-4C9B-8A19-86D1AF7876D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C99A8A3-6671-4C9B-8A19-86D1AF7876D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
