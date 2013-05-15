@@ -2,18 +2,18 @@
 {
     using System;
 
-    public partial class Program
+    public static class FieldRenderer
     {
-        private static void Render(string[,] battleField)
+        public static void Render(Field field)
         {
-            RenderHeader(battleField);
-            RenderField(battleField);
+            RenderHeader(field);
+            RenderField(field);
         }
 
-        private static void RenderHeader(string[,] battleField)
+        private static void RenderHeader(Field battleField)
         {
             Console.Write("   ");
-            for (int row = 0; row < battleField.GetLength(0); row++)
+            for (int row = 0; row < battleField.Rows; row++)
             {
                 Console.Write("{0, 3}", row);
             }
@@ -21,7 +21,7 @@
             Console.WriteLine();
 
             Console.Write("   ");
-            for (int row = 0; row < battleField.GetLength(0); row++)
+            for (int row = 0; row < battleField.Rows; row++)
             {
                 Console.Write("---");
             }
@@ -29,12 +29,12 @@
             Console.WriteLine();
         }
 
-        private static void RenderField(string[,] battleField)
+        private static void RenderField(Field battleField)
         {
-            for (int row = 0; row < battleField.GetLength(0); row++)
+            for (int row = 0; row < battleField.Rows; row++)
             {
                 Console.Write("{0, 2}| ", row);
-                for (int col = 0; col < battleField.GetLength(1); col++)
+                for (int col = 0; col < battleField.Cols; col++)
                 {
                     Console.Write(" {0} ", battleField[row, col]);
                 }

@@ -15,6 +15,12 @@
 
         public int Col { get; private set; }
 
+        private static readonly Coordinates minValue = new Coordinates(int.MinValue, int.MinValue);
+        public static Coordinates MinValue { get { return Coordinates.minValue; } }
+
+        private static readonly Coordinates maxValue = new Coordinates(int.MaxValue, int.MaxValue);
+        public static Coordinates MaxValue { get { return Coordinates.maxValue; } }
+
         public static Coordinates operator +(Coordinates a, Coordinates b)
         {
             return new Coordinates(a.Row + b.Row, a.Col + b.Col);

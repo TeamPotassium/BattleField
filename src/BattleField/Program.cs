@@ -6,7 +6,7 @@
 
     public partial class Program
     {
-        private static string[,] battleField;
+        private static Field field;
 
         public static void Main()
         {
@@ -19,12 +19,14 @@
             Console.WriteLine("Welcome to \"Battle Field\" game.");
             Console.WriteLine();
 #endif
-            GenerateBattlefield(n);
+            field = new Field(n, n);
 
+            Detonator detonator = new Detonator(field);
+            
             int moveCounter = 0;
             while (!IsGameOver())
             {
-                Render(battleField);
+                FieldRenderer.Render(field);
 
                 Console.Write("Please enter coordinates: ");
 
@@ -35,7 +37,9 @@
                     Console.WriteLine("Invalid move!");
                 }
 
-                DetonateMine(input);
+                Mine mine = (Mine)int.Parse(field[input]);
+                detonator.DetonateMine(mine, input);
+
                 moveCounter++;
             }
 
@@ -55,7 +59,7 @@
             string[] inputStr = Regex.Split(inputLine.Trim(), @"\s+");
             int[] input = inputStr.Select(int.Parse).ToArray();
 
-            if (battleField[input[0], input[1]] == "-" || battleField[input[0], input[1]] == "X")
+            if (field[input[0], input[1]] == "-" || field[input[0], input[1]] == "X")
             {
                 return false;
             }
@@ -67,11 +71,16 @@
 
         private static bool IsGameOver()
         {
-            foreach (string cell in battleField)
+            for (int row = 0; row < field.Rows; row++)
             {
-                if (cell != "-" && cell != "X")
+                for (int col = 0; col < field.Cols; col++)
                 {
-                    return false;
+                    string cell = field[row, col];
+
+                    if (cell != "-" && cell != "X")
+                    {
+                        return false;
+                    }
                 }
             }
 
