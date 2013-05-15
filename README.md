@@ -1,3 +1,3 @@
-# High-Quality Code Construction – Game "Battle Field"
+# Game "Battle Field"
 
 Your task is to write an interactive console-based implementation of the game “Battle Field” in which the player tries to clean a matrix of numbers and empty cells by series of explosions which detonate areas of different sizes. At the start of the game, the program should read the size of the battle field `n` and should generate a random battle field: a matrix of size `n x n` (1 ≤ `n` ≤ 10). Each cell of the matrix should be initially filled with a random number in the range `[1..5]` (donating a mine of some size) or with an empty cell `-`. The number mines should be between 15% and 30% of the cells in the battle field. At each step the player enters two coordinates `row` and `col` and depending on the number in the cell at the specified position `{ row, col }` the computer detonates an area of the matrix.
